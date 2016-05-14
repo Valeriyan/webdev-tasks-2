@@ -1,9 +1,17 @@
 {
   "private": true,
   "dependencies": {
-    "jscs": "2.2.1"
+    "mongodb": "^2.1.18"
   },
   "scripts": {
-    "lint": "jscs ."
+    "lint": "jscs .",
+    "test": "./node_modules/.bin/mocha tests/test.js",
+    "drop": "node ./tests/drop.js",
+    "fill": "node ./tests/fill.js"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jscs": "^2.2.1",
+    "mocha": "^2.4.5"
   }
 }
