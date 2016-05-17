@@ -2,7 +2,6 @@
     "excludeFiles": [
         "**/node_modules/**"
     ],
-    "esnext": true,
     "disallowImplicitTypeConversion": [
         "binary",
         "boolean",
