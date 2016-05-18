@@ -53,22 +53,22 @@ class Multivarka {
         this.fields[this.fields.length - 1][this.lastField] = newSelector;
     }
     find(cb) {
-        MongoClient.connect(this.url, (err, db) => {
-            if (err) {
-                cb(err);
-                return;
-            }
-            const collection = db.collection(this.collectionName);
+        try {
+            MongoClient.connect(this.url, (err, db) => {
+                const collection = db.collection(this.collectionName);
 
-            collection.find({
-                $and: this.fields
-            })
-            .toArray((err, res) => {
-                db.close();
-                this.wipe();
-                cb(err, res);
+                collection.find({
+                    $and: this.fields
+                })
+                .toArray((err, res) => {
+                    db.close();
+                    this.wipe();
+                    cb(err, res);
+                });
             });
-        });
+        } catch (err) {
+            cb(err);
+        }
     }
     wipe() {
         this.url = '';
